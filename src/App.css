@@ -40,3 +40,8 @@
 .read-the-docs {
   color: #888;
 }
+
+body {
+  background-color: #ffffff; /* modo claro por defecto */
+  color: #213547;           /* texto oscuro por defecto */
+}
