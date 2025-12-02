@@ -5,10 +5,9 @@ export interface Onboarding {
 }
 
 export interface Contributor {
-  id: number;
+  email: number;
   firstName: string;
   lastName: string;
-  email: string;
   joinDate: string;
   onboardings: Onboarding[];
 }
