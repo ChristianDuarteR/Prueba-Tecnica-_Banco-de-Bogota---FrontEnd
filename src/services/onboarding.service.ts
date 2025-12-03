@@ -1,4 +1,4 @@
-import { OnboardingDto } from '../../types/contributor.types'
+import { OnboardingDto } from '../types/contributor.types'
 const API_BASE_URL = 'http://localhost:8080/api/v1/onboardings';
 
 

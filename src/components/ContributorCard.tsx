@@ -1,7 +1,7 @@
 import React from 'react';
 import { Edit2, Trash2, Mail, Calendar } from 'lucide-react';
 import { OnboardingItem } from './OnboardingItem';
-import { ContributorDto } from '@/types/contributor.types';
+import { ContributorDto } from '@/src/types/contributor.types';
 
 interface ContributorCardProps {
   contributor: ContributorDto;
@@ -29,7 +29,7 @@ export const ContributorCard: React.FC<ContributorCardProps> = ({
               </div>
               <div className="flex items-center gap-2">
                 <Calendar size={16} />
-                Ingreso: {new Date(contributor.joinDate).toLocaleDateString()}
+                Ingreso: {contributor.joinDate.split('-').reverse().join('/')}
               </div>
             </div>
           </div>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { X, Plus } from 'lucide-react';
 import { OnboardingFormItem } from './OnboardingFormItem';
-import { ContributorDto, OnboardingDto } from '@/types/contributor.types';
+import { ContributorDto, OnboardingDto } from '@/src/types/contributor.types';
 
 interface ContributorModalProps {
   isOpen: boolean;

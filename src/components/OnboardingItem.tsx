@@ -1,7 +1,7 @@
 import React from 'react';
 import { CheckCircle, XCircle } from 'lucide-react';
-import { OnboardingDto } from '../../types/contributor.types'
-
+import { OnboardingDto } from '../types/contributor.types'
+import { normalizeDate } from '../utils/dateFormat'
 interface OnboardingItemProps {
   onboarding: OnboardingDto;
 }
@@ -19,7 +19,7 @@ export const OnboardingItem: React.FC<OnboardingItemProps> = ({ onboarding }) =>
           <p className="font-medium text-gray-800">{onboarding.title}</p>
           <p className="text-xs text-gray-600">
           <p className='font-medium text-gray-900'>{onboarding.type} </p>
-            Fecha Estimada: {new Date(onboarding.onBoardingTechnicalDateAssigned).toLocaleDateString()}
+              Fecha Estimada: {normalizeDate(onboarding.onBoardingTechnicalDateAssigned)}
           </p>
         </div>
       </div>

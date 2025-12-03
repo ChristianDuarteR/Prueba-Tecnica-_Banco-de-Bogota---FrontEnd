@@ -1,13 +1,7 @@
 import React from 'react';
 import { Trash2 } from 'lucide-react';
-import { OnboardingDto, OnboardingType } from '../../types/contributor.types';
+import { OnboardingDto, OnboardingFormItemProps, OnboardingType } from '../types/contributor.types';
 
-interface OnboardingFormItemProps {
-  onboarding: OnboardingDto;
-  index: number;
-  onUpdate: (index: number, field: keyof OnboardingDto, value: any) => void;
-  onRemove: (index: number) => void;
-}
 
 export const OnboardingFormItem: React.FC<OnboardingFormItemProps> = ({
   onboarding,

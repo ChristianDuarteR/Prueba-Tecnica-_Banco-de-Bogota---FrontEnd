@@ -1,11 +1,12 @@
 import React from 'react';
-import { Calendar } from 'lucide-react';
+import { Calendar, Mail } from 'lucide-react';
 
 interface HeaderProps {
   onOpenCalendar: () => void;
+  onOpenNotification: () => void;
 }
 
-export const Header: React.FC<HeaderProps> = ({ onOpenCalendar }) => {
+export const Header: React.FC<HeaderProps> = ({ onOpenCalendar, onOpenNotification }) => {
   return (
     <div className="bg-white rounded-xl shadow-lg p-6 mb-6 flex items-center justify-between">
       <div>
@@ -23,6 +24,14 @@ export const Header: React.FC<HeaderProps> = ({ onOpenCalendar }) => {
       >
         <Calendar size={18} />
         Ver calendario
+      </button>
+
+        <button
+          onClick={onOpenNotification}
+          className="flex items-center gap-1 bg-indigo-600 text-white px-4 py-2 rounded-lg shadow hover:bg-indigo-700 transition"
+        >
+          <Mail size={18} />
+          Ver estado notificaciones
       </button>
     </div>
   );

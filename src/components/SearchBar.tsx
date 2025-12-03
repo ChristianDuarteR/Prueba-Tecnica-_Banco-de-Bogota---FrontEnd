@@ -1,6 +1,6 @@
 import React from 'react';
 import { Search, Plus, Filter } from 'lucide-react';
-import { OnboardingType } from '../../types/contributor.types'
+import { OnboardingType } from '../types/contributor.types'
 
 interface FilterState {
   types: OnboardingType[];

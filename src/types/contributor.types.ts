@@ -31,3 +31,21 @@ export interface CalendarPanelProps {
   contributors: ContributorDto[];
   onClose: () => void;
 }
+
+export interface OnboardingFormItemProps {
+  onboarding: OnboardingDto;
+  index: number;
+  onUpdate: (index: number, field: keyof OnboardingDto, value: any) => void;
+  onRemove: (index: number) => void;
+}
+
+export interface OnboardingDetailProps {
+  selectedEvent: {
+    contributorName: string;
+    contributorEmail: string;
+    type: string;
+    status: boolean;
+    date: string;
+  };
+  onClose: () => void;
+}

@@ -7,8 +7,9 @@ import { LoadingSpinner } from './components/LoadingSpinner';
 import { EmptyState } from './components/EmptyState';
 import { ContributorCard } from './components/ContributorCard';
 import { ContributorModal } from './components/ContributorModal';
-import { ContributorDto, OnboardingDto, OnboardingType } from '../types/contributor.types';
+import { ContributorDto, OnboardingDto, OnboardingType } from './types/contributor.types';
 import { CalendarPanel } from './components/CalendarPanel';
+import { NotificationPanel } from './components/NotificationPanel';
 
 interface FilterState {
   types: OnboardingType[];
@@ -25,6 +26,7 @@ export default function App() {
   const [error, setError] = useState<string | null>(null);
   const [editingContributor, setEditingContributor] = useState<ContributorDto | null>(null);
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
+    const [isNotificationOpen, setIsNotificationOpen] = useState(false); 
 
   const [formData, setFormData] = useState<ContributorDto>({
     firstName: '',
@@ -174,7 +176,10 @@ export default function App() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-6">
       <div className="max-w-7xl mx-auto">
-        <Header onOpenCalendar={() => setIsCalendarOpen(true)} />
+        <Header 
+            onOpenCalendar={() => setIsCalendarOpen(true)} 
+            onOpenNotification={() => setIsNotificationOpen(true)} 
+          />
         <ErrorMessage message={error} />
         <SearchBar 
           searchTerm={searchTerm}
@@ -216,6 +221,11 @@ export default function App() {
           isOpen={isCalendarOpen}
           contributors={contributors}
           onClose={() => setIsCalendarOpen(false)}
+        />
+
+        <NotificationPanel 
+          isOpen={isNotificationOpen} 
+          onClose={() => setIsNotificationOpen(false)}
         />
 
       </div>

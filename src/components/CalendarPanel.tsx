@@ -1,17 +1,16 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import { X, Calendar as CalendarIcon, User, CheckCircle, XCircle } from 'lucide-react';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
-import { CalendarPanelProps } from '@/types/contributor.types';
+import { CalendarPanelProps } from '@/src/types/contributor.types';
+import { OnboardingDetail } from './onboardingDetail';
 
-
-export const CalendarPanel: React.FC<CalendarPanelProps> = ({ 
-  isOpen, 
-  contributors, 
-  onClose 
-}) => {
+export const CalendarPanel: React.FC<CalendarPanelProps> = ({  isOpen,  contributors, onClose }) => {
+ 
+  const [selectedEvent, setSelectedEvent] = useState<any>(null);
   const events = useMemo(() => {
+    
     const calendarEvents: any[] = [];
     
     contributors.forEach(contributor => {
@@ -125,19 +124,19 @@ export const CalendarPanel: React.FC<CalendarPanelProps> = ({
               }}
               locale="es"
               height="auto"
-              eventClick={(info) => {
-                const { contributorName, contributorEmail, type, status } = info.event.extendedProps;
-                alert(
-                  `Contributor: ${contributorName}\n` +
-                  `Email: ${contributorEmail}\n` +
-                  `Tipo: ${type}\n` +
-                  `Estado: ${status ? 'Completado' : 'Pendiente'}\n` +
-                  `Fecha: ${info.event.startStr}`
-                );
-              }}
+                eventClick={(info) => {
+                  setSelectedEvent({
+                    ...info.event.extendedProps,
+                    date: info.event.startStr
+                  });
+                }}
             />
           </div>
         </div>
+          {selectedEvent && (<OnboardingDetail
+            selectedEvent={selectedEvent}
+            onClose={() => setSelectedEvent(null)}
+          />)}
       </div>
     </>
   );
