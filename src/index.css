@@ -1,3 +1,29 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Custom FullCalendar overrides */
+.fc {
+  font-family: inherit;
+}
+
+.fc-button {
+  @apply bg-blue-600 border-blue-600 text-white rounded-lg px-4 py-2 hover:bg-blue-700 transition-colors;
+}
+
+.fc-button-primary:not(:disabled):active,
+.fc-button-primary:not(:disabled).fc-button-active {
+  @apply bg-blue-700 border-blue-700;
+}
+
+.fc-day-today {
+  @apply bg-blue-50;
+}
+
+.fc-event {
+  @apply cursor-pointer rounded-md border-l-4;
+}
+
+.fc-event:hover {
+  @apply opacity-80;
+}

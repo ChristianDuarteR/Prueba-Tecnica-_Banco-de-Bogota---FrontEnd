@@ -25,3 +25,9 @@ export interface ContributorCardProps {
   onEdit: (contributor: ContributorDto) => void;
   onDelete: (email: string) => void;
 }
+
+export interface CalendarPanelProps {
+  isOpen: boolean;
+  contributors: ContributorDto[];
+  onClose: () => void;
+}

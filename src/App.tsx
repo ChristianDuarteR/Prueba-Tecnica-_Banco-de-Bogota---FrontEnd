@@ -8,15 +8,23 @@ import { EmptyState } from './components/EmptyState';
 import { ContributorCard } from './components/ContributorCard';
 import { ContributorModal } from './components/ContributorModal';
 import { ContributorDto, OnboardingDto, OnboardingType } from '../types/contributor.types';
+import { CalendarPanel } from './components/CalendarPanel';
+
+interface FilterState {
+  types: OnboardingType[];
+  statuses: ('completed' | 'pending')[];
+}
 
 export default function App() {
   const [contributors, setContributors] = useState<ContributorDto[]>([]);
   const [filteredContributors, setFilteredContributors] = useState<ContributorDto[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
+  const [filters, setFilters] = useState<FilterState>({ types: [], statuses: [] });
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [editingContributor, setEditingContributor] = useState<ContributorDto | null>(null);
+  const [isCalendarOpen, setIsCalendarOpen] = useState(false);
 
   const [formData, setFormData] = useState<ContributorDto>({
     firstName: '',
@@ -31,13 +39,34 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    const filtered = contributors.filter(c =>
+    let filtered = contributors.filter(c =>
       c.firstName.toLowerCase().includes(searchTerm.toLowerCase()) ||
       c.lastName.toLowerCase().includes(searchTerm.toLowerCase()) ||
       c.email.toLowerCase().includes(searchTerm.toLowerCase())
     );
+
+    if (filters.types.length > 0 || filters.statuses.length > 0) {
+      filtered = filtered.filter(contributor => {
+        if (!contributor.onboardings || contributor.onboardings.length === 0) {
+          return false;
+        }
+
+        const hasMatchingType = filters.types.length === 0 || 
+          contributor.onboardings.some((onb: { type: any; }) => filters.types.includes(onb.type));
+
+        const hasMatchingStatus = filters.statuses.length === 0 || 
+          contributor.onboardings.some((onb: { onBoardingStatus: any; }) => {
+            if (filters.statuses.includes('completed') && onb.onBoardingStatus) return true;
+            if (filters.statuses.includes('pending') && !onb.onBoardingStatus) return true;
+            return false;
+          });
+
+        return hasMatchingType && hasMatchingStatus;
+      });
+    }
+
     setFilteredContributors(filtered);
-  }, [searchTerm, contributors]);
+  }, [searchTerm, contributors, filters]);
 
   const loadContributors = async () => {
     setIsLoading(true);
@@ -121,9 +150,9 @@ export default function App() {
         ...formData.onboardings,
         {
           type: OnboardingType.TECNICO,
-          title: '',
           onBoardingStatus: false,
           onBoardingTechnicalDateAssigned: new Date().toISOString().split('T')[0],
+          title: ''
         },
       ],
     });
@@ -145,18 +174,20 @@ export default function App() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-6">
       <div className="max-w-7xl mx-auto">
-        <Header />
+        <Header onOpenCalendar={() => setIsCalendarOpen(true)} />
         <ErrorMessage message={error} />
         <SearchBar 
           searchTerm={searchTerm}
+          filters={filters}
           onSearchChange={setSearchTerm}
+          onFilterChange={setFilters}
           onNewContributor={() => openModal()}
         />
 
         {isLoading && !isModalOpen ? (
           <LoadingSpinner />
         ) : (
-          <div className="grid gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {filteredContributors.map((contributor) => (
               <ContributorCard
                 key={contributor.email}
@@ -181,6 +212,12 @@ export default function App() {
           onUpdateOnboarding={updateOnboarding}
           onRemoveOnboarding={removeOnboarding}
         />
+        <CalendarPanel
+          isOpen={isCalendarOpen}
+          contributors={contributors}
+          onClose={() => setIsCalendarOpen(false)}
+        />
+
       </div>
     </div>
   );
