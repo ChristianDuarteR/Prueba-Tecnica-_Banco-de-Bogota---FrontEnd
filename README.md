@@ -26,7 +26,19 @@ Este proyecto es la interfaz de usuario para un sistema de **onboarding** que pe
     ```bash
     npm run dev
     ```
-# Funcionalidades implementadas
+# Envio de correos 
+
+- Es posible enviar alertas manual/automaticamente a los colaboradores con onboardings menores a 7 dias como en este caso
+<img width="818" height="782" alt="image" src="https://github.com/user-attachments/assets/e3c05906-4e24-4a8d-8ac9-a2cc64f971dd" />
+
+<img width="1570" height="794" alt="image" src="https://github.com/user-attachments/assets/42c36179-e52a-4838-883d-fa87a428f826" />
+
+# Organizador visual diario mediante Calendario
+
+- Utilizando la libreria FullCalender es posible utilizar nuestros Modelos para mapearlos en eventos
+<img width="913" height="871" alt="image" src="https://github.com/user-attachments/assets/3faff40c-7a44-498b-9876-641ddfe739d3" />
+
+# Funcionalidades Criticas
 
 - **Gestión de colaboradores:** listar, crear, actualizar y eliminar.
 - **Visualización de onboardings** registrados en el sistema.
