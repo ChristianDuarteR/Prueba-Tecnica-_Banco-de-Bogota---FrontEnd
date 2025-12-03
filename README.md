@@ -1,67 +1,62 @@
-# Dashboard de Colaboradores
+# Frontend - DashBoard OnBoardings App
 
-Dashboard SPA construido con React + Vite + TypeScript para gestionar colaboradores y sus procesos de onboarding.
+Este proyecto es la interfaz de usuario para un sistema de **onboarding** que permite listar, crear, actualizar y eliminar colaboradores, así como visualizar el estado de los procesos de onboarding y enviar notificaciones automáticas.
 
-## Características
+## Tecnologías utilizadas
 
-- ✅ Listar colaboradores
-- ✅ Crear nuevos colaboradores
-- ✅ Editar colaboradores existentes
-- ✅ Eliminar colaboradores
-- ✅ Gestionar onboardings (técnico y bienvenida)
-- ✅ Marcar estado de onboarding con fechas
+- **React (Vite + JSX)**
+- **CSS personalizado**
+- **Tailwind CSS personalizado**
+- **Fetch API / Services para comunicación con el backend**
 
-## Estructura del Proyecto
+## Instrucciones para correr el proyecto
 
-\`\`\`
-src/
-├── components/          # Componentes React
-│   ├── ContributorList.tsx
-│   ├── ContributorForm.tsx
-│   └── OnboardingItem.tsx
-├── hooks/              # Custom hooks
-│   └── useContributors.ts
-├── services/           # Servicios para API calls
-│   └── contributor.service.ts
-├── types/              # Definiciones de TypeScript
-│   └── contributor.types.ts
-├── App.tsx             # Componente principal
-├── App.css             # Estilos
-└── main.tsx            # Entry point
-\`\`\`
+1. Tener instalado **Git** en tu máquina local.  
+2. Elegir una carpeta donde guardar el proyecto.  
+3. Abrir la terminal de Git (**Git Bash**) en esa carpeta.  
+4. Clonar el repositorio:  
+   ```bash
+   git clone https://github.com/ChristianDuarteR/Prueba-Tecnica-_Banco-de-Bogota---FrontEnd.git
+5. Abrir el proyecto en tu IDE favorito o navegar hasta el directorio desde la terminal.
+6. Instalar dependencias:
+    ```bash
+    npm install
+    ```
+7.Ejecutar el proyecto:
+    ```bash
+    npm run dev
+    ```
+# Funcionalidades implementadas
 
-## Instalación
+- **Gestión de colaboradores:** listar, crear, actualizar y eliminar.
+- **Visualización de onboardings** registrados en el sistema.
+- **Disparar notificaciones de onboarding** (manual o automática).
+- **UI moderna** con tarjetas y estilos personalizados.
 
-\`\`\`bash
-npm install
-\`\`\`
+## Conexión con el backend
 
-## Configuración
+Este frontend se conecta a un backend Spring Boot disponible en `http://localhost:8080`.  
+Las rutas utilizadas incluyen:
 
-Crea un archivo `.env` basado en `.env.example`:
+### Contributors
+- `GET /api/v1/contributors` → Obtener todos los colaboradores
+- `GET /api/v1/contributors/{email}` → Obtener colaborador por email
+- `POST /api/v1/contributors` → Crear nuevo colaborador
+- `PUT /api/v1/contributors/{email}` → Actualizar colaborador
+- `DELETE /api/v1/contributors/{email}` → Eliminar colaborador
 
-\`\`\`env
-VITE_API_BASE_URL=http://localhost:8080
-\`\`\`
+### Onboardings
+- `GET /api/v1/onboardings` → Obtener todos los onboardings
 
-## Desarrollo
+### Emails
+- `GET /api/v1/emails` → Obtener estado de notificaciones
+- `POST /api/v1/emails?manual={true|false}` → Disparar notificaciones de onboarding (manual o automática)
 
-\`\`\`bash
-npm run dev
-\`\`\`
+## Authors
 
-La aplicación estará disponible en `http://localhost:3000`
+- **Christian Duarte** - @ChristianDuarteR
 
-## Build
+## Licencia
 
-\`\`\`bash
-npm run build
-\`\`\`
-
-## API Endpoints
-
-- `GET /api/v1/contributors` - Listar todos los colaboradores
-- `GET /api/v1/contributors/{email}` - Obtener un colaborador
-- `POST /api/v1/contributors` - Crear colaborador
-- `PUT /api/v1/contributors/{email}` - Actualizar colaborador
-- `DELETE /api/v1/contributors/{email}` - Eliminar colaborador
+Este proyecto fue desarrollado con fines académicos/técnicos como parte de una prueba.  
+Uso libre y educativo.
