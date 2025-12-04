@@ -1,19 +1,7 @@
 import React from 'react';
 import { Search, Plus, Filter } from 'lucide-react';
-import { OnboardingType } from '../types/contributor.types'
+import { OnboardingType, SearchBarProps } from '../types/contributor.types'
 
-interface FilterState {
-  types: OnboardingType[];
-  statuses: ('completed' | 'pending')[];
-}
-
-interface SearchBarProps {
-  searchTerm: string;
-  filters: FilterState;
-  onSearchChange: (value: string) => void;
-  onFilterChange: (filters: FilterState) => void;
-  onNewContributor: () => void;
-}
 
 export const SearchBar: React.FC<SearchBarProps> = ({ 
   searchTerm, 

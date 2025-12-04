@@ -180,7 +180,11 @@ export default function App() {
             onOpenCalendar={() => setIsCalendarOpen(true)} 
             onOpenNotification={() => setIsNotificationOpen(true)} 
           />
-        <ErrorMessage message={error} />
+        {error && (
+          <div className="fixed top-6 left-1/2 -translate-x-1/2 z-[99999] w-full max-w-xl px-4 pointer-events-auto">
+            <ErrorMessage message={error} />
+          </div>
+        )}
         <SearchBar 
           searchTerm={searchTerm}
           filters={filters}

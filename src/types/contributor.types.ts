@@ -49,3 +49,37 @@ export interface OnboardingDetailProps {
   };
   onClose: () => void;
 }
+
+
+export interface ContributorModalProps {
+  isOpen: boolean;
+  isEditing: boolean;
+  formData: ContributorDto;
+  isLoading: boolean;
+  onClose: () => void;
+  onSubmit: () => void;
+  onFormChange: (data: Partial<ContributorDto>) => void;
+  onAddOnboarding: () => void;
+  onUpdateOnboarding: (index: number, field: keyof OnboardingDto, value: any) => void;
+  onRemoveOnboarding: (index: number) => void;
+}
+
+export type FormErrors = {
+  firstName?: string;
+  lastName?: string;
+  email?: string;
+  joinDate?: string;
+};
+
+export interface FilterState {
+  types: OnboardingType[];
+  statuses: ('completed' | 'pending')[];
+}
+
+export interface SearchBarProps {
+  searchTerm: string;
+  filters: FilterState;
+  onSearchChange: (value: string) => void;
+  onFilterChange: (filters: FilterState) => void;
+  onNewContributor: () => void;
+}

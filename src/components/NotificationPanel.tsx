@@ -110,7 +110,7 @@ export const NotificationPanel: React.FC<NotificationPanelProps> = ({ isOpen, on
 
             <p className="text-sm text-gray-600 mb-4">
               Ejecuta manualmente la verificación de onboardings próximos a vencer. 
-              Esto enviará correos a todos los contributors con onboardings que vencen en <strong>7 días o menos. </strong>
+              Esto enviará correos a todos los colaboradores con onboardings que vencen en <strong>7 días o menos. </strong>
             </p>
 
             <button

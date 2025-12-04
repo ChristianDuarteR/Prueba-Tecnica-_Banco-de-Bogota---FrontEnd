@@ -22,7 +22,7 @@ export const contributorService = {
       body: JSON.stringify(contributor),
     });
     if (!response.ok) {
-      const error = response.headers.get('X-Error-Message') || 'Parece que este Colaborador ya existe';
+      const error = response.headers.get('X-Error-Message') || 'Parece que este Colaborador ya existe o los datos son incorrectos';
       throw new Error(error);
     }
     return response.json();
